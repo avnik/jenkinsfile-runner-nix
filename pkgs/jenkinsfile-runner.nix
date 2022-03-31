@@ -25,7 +25,9 @@ stdenv.mkDerivation rec {
     #!${pkgs.runtimeShell}
     export JAVACMD="${openjdk}/bin/java"
     export JAVA_OPTS="--illegal-access=permit"
+    echo "NOTE: Ignore warnings about \"illegal reflective access\"" 
     exec $out/share/java/bin/jenkinsfile-runner \$@ --jenkins-war=$out/share/webapps/
     EOF
+    chmod +x $out/bin/jenkinsfile-runner
   '';
 }
